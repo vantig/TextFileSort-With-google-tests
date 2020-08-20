@@ -22,7 +22,7 @@ void printFile(std::vector<std::string> vec, std::string fileName)
 std::string removeWord(std::string string, std::string word)
 {
 	std::string temp=string;
-	std::istringstream iss(string);
+	std::istringstream iss(temp);
 	std::string str;
 
 	while (iss >> str)
@@ -35,27 +35,20 @@ std::string removeWord(std::string string, std::string word)
 		
 
 	}
-		return str;
+		return temp;
 	
 	
 }
 void removeWordFromVector(std::vector<std::string>&vector, std::string word)
 {
-
-	for (auto cur = vector.begin(); cur < vector.end(); cur++)
+	for (size_t i = 0; i < vector.size(); i++)
 	{
-		*cur = removeWord(*cur, word);
-		if (cur->empty())
-		{
-			vector.erase(cur);
-		}
+		vector[i] = removeWord(vector[i], word);
 	}
+	vector.erase(remove(vector.begin(), vector.end(), ""), vector.end());
+
 }
-std::istream& operator>>(std::istream& in,  std::string& str)
-{
-	std::getline(in,str);
-	return in;
-}
+
 bool issameWord(std::string str1, std::string str2)
 {
 	if (str1.length() != str2.length())
@@ -64,9 +57,21 @@ bool issameWord(std::string str1, std::string str2)
 	}
 	for (size_t i = 0; i < str1.length(); i++)
 	{
-		towupper(str1[i] != towupper(str2[i]));
+		if(toupper(str1[i]) != toupper(str2[i]))
 			return false;
 	}
 	return true;
+}
+void SortVector(std::vector<std::string>& vector)
+{
+	std::sort(vector.begin(), vector.end(), [](auto l, auto r)
+		{
+
+
+			return std::lexicographical_compare(std::begin(l), std::end(l), std::begin(r), std::end(r),
+				[](char cl, char cr) { return tolower(cl) < tolower(cr); });
+
+
+		});
 }
 

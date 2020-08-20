@@ -37,6 +37,13 @@ TEST(CheckText, DeleteWord) {
 
 TEST(CheckString, isSame) {
 	
-	EXPECT_EQ(1, issameWord("HI","hi"));
+	EXPECT_EQ(1, issameWord("HI","Hi"));
 }
 
+
+TEST(CheckSort, isSame) {
+	std::vector<std::string> vec1{ "HI", "hello", "ho" };
+	std::vector<std::string> vec2{ "hello","HI", "ho" };
+	SortVector(vec1);
+	EXPECT_EQ(vec1, vec2);
+}

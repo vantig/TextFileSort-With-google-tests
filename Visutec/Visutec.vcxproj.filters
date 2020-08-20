@@ -34,5 +34,8 @@
     <Text Include="Output.txt">
       <Filter>Исходные файлы</Filter>
     </Text>
+    <Text Include="Output1.txt">
+      <Filter>Исходные файлы</Filter>
+    </Text>
   </ItemGroup>
 </Project>
